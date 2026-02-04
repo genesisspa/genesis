@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Genesis | Santuario de Bienestar</title>
+    
+    <!-- Fuentes: Cinzel para títulos y Lato para un cuerpo de texto limpio -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500&family=Lato:wght@300;400&family=Pinyon+Script&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        genesis: {
+                            base: '#FDFBF7',       /* Crema muy claro / Pergamino */
+                            sage: '#E3E8E3',       /* Verde Salvia Tenue (Relajante) */
+                            accent: '#D4C3A9',     /* Oro Champaña */
+                            dark: '#4A524C',       /* Gris Mineral Suave */
+                            clay: '#F4F1ED'        /* Arena clara */
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['"Cinzel"', 'serif'],
+                        sans: ['"Lato"', 'sans-serif'],
+                        script: ['"Pinyon Script"', 'cursive'],
+                    },
+                    letterSpacing: {
+                        superwide: '.4em',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        html { scroll-behavior: smooth; }
+        
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-track { background: #FDFBF7; }
+        ::-webkit-scrollbar-thumb { background: #D4C3A9; }
+
+        /* Animaciones suaves de entrada */
+        .reveal-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .reveal-up.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Estilo para el logo Mandala */
+        .mandala-logo {
+            animation: slowRotate 20s linear infinite;
+        }
+        @keyframes slowRotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Hero Zoom Effect */
+        .hero-zoom {
+            animation: zoomOut 20s ease-out infinite alternate;
+        }
+        @keyframes zoomOut {
+            from { transform: scale(1.1); }
+            to { transform: scale(1); }
+        }
+    </style>
+</head>
+<body class="bg-genesis-base text-genesis-dark font-sans antialiased selection:bg-genesis-accent selection:text-white">
+
+    <!-- NAVEGACIÓN -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-700 py-8 px-10 flex justify-between items-center border-b border-transparent">
+        <!-- Logo con Mandala -->
+        <a href="#" class="flex items-center gap-4 group">
+            <div class="w-10 h-10 text-genesis-accent mandala-logo">
+                <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.2">
+                    <circle cx="50" cy="50" r="45" stroke-dasharray="4 4"/>
+                    <path d="M50 10 C60 30 70 40 50 50 C30 40 40 30 50 10 Z" fill="currentColor" fill-opacity="0.1"/>
+                    <path d="M50 90 C60 70 70 60 50 50 C30 60 40 70 50 90 Z" fill="currentColor" fill-opacity="0.1"/>
+                    <path d="M90 50 C70 60 60 70 50 50 C60 30 70 40 90 50 Z" fill="currentColor" fill-opacity="0.1"/>
+                    <path d="M10 50 C30 60 40 70 50 50 C40 30 30 40 10 50 Z" fill="currentColor" fill-opacity="0.1"/>
+                    <circle cx="50" cy="50" r="4" fill="currentColor"/>
+                </svg>
+            </div>
+            <span class="font-serif text-xl tracking-superwide uppercase group-hover:text-genesis-accent transition-colors">Genesis</span>
+        </a>
+
+        <!-- Enlaces -->
+        <div class="hidden md:flex items-center gap-12 text-[10px] font-bold tracking-[0.3em] uppercase">
+            <a href="#experiencias" class="hover:text-genesis-accent transition-colors">Experiencias</a>
+            <a href="#boutique" class="hover:text-genesis-accent transition-colors">Boutique</a>
+            <a href="#filosofia" class="hover:text-genesis-accent transition-colors">Filosofía</a>
+            <button class="bg-genesis-dark text-white px-8 py-3 hover:bg-genesis-accent transition-all duration-500">
+                Reserva
+            </button>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <header class="relative h-screen w-full flex items-center justify-center overflow-hidden bg-genesis-clay">
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80" alt="Relajación" class="w-full h-full object-cover hero-zoom opacity-60 grayscale-[30%]">
+            <div class="absolute inset-0 bg-gradient-to-b from-genesis-base/20 to-genesis-base"></div>
+        </div>
+        
+        <div class="relative z-10 text-center px-6">
+            <p class="font-script text-4xl md:text-5xl text-genesis-accent mb-6 reveal-up">El arte de la pausa</p>
+            <h1 class="font-serif text-6xl md:text-8xl lg:text-9xl tracking-[0.2em] uppercase mb-10 text-genesis-dark reveal-up" style="transition-delay: 200ms;">
+                Genesis
+            </h1>
+            <div class="reveal-up" style="transition-delay: 400ms;">
+                <a href="#experiencias" class="text-[11px] font-bold tracking-widest uppercase border-b border-genesis-dark pb-2 hover:text-genesis-accent hover:border-genesis-accent transition-all">
+                    Explorar el Santuario
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- FILOSOFÍA: Diseño de Alta Gama -->
+    <section id="filosofia" class="py-32 px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+                <div class="lg:col-span-5 reveal-up">
+                    <span class="text-genesis-accent text-xs font-bold tracking-superwide uppercase block mb-6">Nuestra Esencia</span>
+                    <h2 class="font-serif text-4xl md:text-5xl text-genesis-dark mb-8 leading-[1.2]">
+                        Un refugio <br><span class="italic font-light">para los sentidos.</span>
+                    </h2>
+                    <p class="text-gray-500 font-light leading-relaxed text-lg mb-8 italic">
+                        "En el silencio encontramos la respuesta a lo que el cuerpo grita."
+                    </p>
+                    <p class="text-gray-600 font-light leading-relaxed text-base mb-10">
+                        Genesis nace de la necesidad de reconectar con la naturaleza en su estado más puro. Hemos diseñado un espacio donde la arquitectura minimalista y los elementos botánicos convergen para ofrecer una restauración celular y espiritual completa.
+                    </p>
+                    <div class="w-20 h-[1px] bg-genesis-accent mb-6"></div>
+                    <p class="font-script text-3xl text-genesis-accent">Mariana V. — Founder</p>
+                </div>
+                <div class="lg:col-span-7 relative reveal-up" style="transition-delay: 300ms;">
+                    <div class="absolute -right-4 -bottom-4 w-full h-full border border-genesis-accent/20 z-0"></div>
+                    <img src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Textura Agua" class="relative z-10 w-full h-[500px] object-cover rounded-sm shadow-sm">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EXPERIENCIAS: Grid Armónico -->
+    <section id="experiencias" class="py-24 bg-genesis-sage/30">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-20 reveal-up">
+                <h2 class="font-serif text-3xl tracking-widest uppercase text-genesis-dark">Rituales de Firma</h2>
+                <div class="h-px w-24 bg-genesis-accent mx-auto mt-4"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Ritual 1 -->
+                <div class="group cursor-pointer reveal-up">
+                    <div class="overflow-hidden mb-6 relative aspect-[3/4]">
+                        <img src="https://images.unsplash.com/photo-1591343395082-e21b17927d22?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-genesis-dark/10 group-hover:bg-transparent transition-colors duration-700"></div>
+                    </div>
+                    <h3 class="font-serif text-xl text-genesis-dark mb-2 tracking-wide">Renacimiento Botánico</h3>
+                    <p class="text-xs text-gray-400 uppercase tracking-widest mb-4">Facial Terapéutico</p>
+                    <p class="text-sm text-gray-500 font-light line-clamp-2">Inspirado en la botánica regenerativa para devolver la luz natural al rostro.</p>
+                </div>
+
+                <!-- Ritual 2 -->
+                <div class="group cursor-pointer reveal-up" style="transition-delay: 200ms;">
+                    <div class="overflow-hidden mb-6 relative aspect-[3/4]">
+                        <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-genesis-dark/10 group-hover:bg-transparent transition-colors duration-700"></div>
+                    </div>
+                    <h3 class="font-serif text-xl text-genesis-dark mb-2 tracking-wide">Inmersión Sensorial</h3>
+                    <p class="text-xs text-gray-400 uppercase tracking-widest mb-4">Terapia Corporal</p>
+                    <p class="text-sm text-gray-500 font-light line-clamp-2">Masaje de tejido profundo con aceites esenciales de grado terapéutico.</p>
+                </div>
+
+                <!-- Ritual 3 -->
+                <div class="group cursor-pointer reveal-up" style="transition-delay: 400ms;">
+                    <div class="overflow-hidden mb-6 relative aspect-[3/4]">
+                        <img src="https://images.unsplash.com/photo-1603569283847-aa295f0d016a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-genesis-dark/10 group-hover:bg-transparent transition-colors duration-700"></div>
+                    </div>
+                    <h3 class="font-serif text-xl text-genesis-dark mb-2 tracking-wide">Paz Interior</h3>
+                    <p class="text-xs text-gray-400 uppercase tracking-widest mb-4">Meditación Asistida</p>
+                    <p class="text-sm text-gray-500 font-light line-clamp-2">Un viaje de cuencos de cuarzo y respiración consciente.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BOUTIQUE: Minimalista y Atractiva con Imágenes Restauradas -->
+    <section id="boutique" class="py-32 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center mb-20 reveal-up">
+                <div class="text-center md:text-left mb-8 md:mb-0">
+                    <h2 class="font-serif text-4xl text-genesis-dark mb-2 tracking-wide">Genesis <span class="italic font-light">Boutique</span></h2>
+                    <p class="text-xs tracking-widest uppercase text-genesis-accent">El spa en tu hogar</p>
+                </div>
+                <a href="#" class="text-[10px] font-bold tracking-widest uppercase border-b border-genesis-dark pb-2 hover:text-genesis-accent hover:border-genesis-accent transition-all">Ver Colección Completa</a>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
+                <!-- Producto 1: Restaurado -->
+                <div class="group reveal-up">
+                    <div class="bg-genesis-clay aspect-[4/5] p-10 mb-6 flex items-center justify-center relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1611080626919-7cf5a9dbab5b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Aceite Terapéutico" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                        <button class="absolute bottom-0 left-0 w-full bg-genesis-dark text-white py-4 text-[10px] uppercase tracking-widest transform translate-y-full group-hover:translate-y-0 transition-transform duration-500">Añadir al Carrito</button>
+                    </div>
+                    <div class="text-center">
+                        <h4 class="font-serif text-lg mb-1">Elixir Luna</h4>
+                        <p class="text-[10px] text-gray-400 uppercase tracking-widest mb-2">Suero Nocturno</p>
+                        <span class="text-sm text-genesis-accent">$75.00</span>
+                    </div>
+                </div>
+
+                <!-- Producto 2: Restaurado -->
+                <div class="group reveal-up" style="transition-delay: 150ms;">
+                    <div class="bg-genesis-clay aspect-[4/5] p-10 mb-6 flex items-center justify-center relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1556227702-d1e4e7b5c232?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Crema Hidratante" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                        <button class="absolute bottom-0 left-0 w-full bg-genesis-dark text-white py-4 text-[10px] uppercase tracking-widest transform translate-y-full group-hover:translate-y-0 transition-transform duration-500">Añadir al Carrito</button>
+                    </div>
+                    <div class="text-center">
+                        <h4 class="font-serif text-lg mb-1">Seda Mineral</h4>
+                        <p class="text-[10px] text-gray-400 uppercase tracking-widest mb-2">Crema Hidratante</p>
+                        <span class="text-sm text-genesis-accent">$92.00</span>
+                    </div>
+                </div>
+
+                <!-- Producto 3: Restaurado -->
+                <div class="group reveal-up" style="transition-delay: 300ms;">
+                    <div class="bg-genesis-clay aspect-[4/5] p-10 mb-6 flex items-center justify-center relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1590439471364-192aa70c0b53?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Sales de Baño" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                        <button class="absolute bottom-0 left-0 w-full bg-genesis-dark text-white py-4 text-[10px] uppercase tracking-widest transform translate-y-full group-hover:translate-y-0 transition-transform duration-500">Añadir al Carrito</button>
+                    </div>
+                    <div class="text-center">
+                        <h4 class="font-serif text-lg mb-1">Cristal Marino</h4>
+                        <p class="text-[10px] text-gray-400 uppercase tracking-widest mb-2">Exfoliante de Sales</p>
+                        <span class="text-sm text-genesis-accent">$48.00</span>
+                    </div>
+                </div>
+
+                <!-- Producto 4: Restaurado -->
+                <div class="group reveal-up" style="transition-delay: 450ms;">
+                    <div class="bg-genesis-clay aspect-[4/5] p-10 mb-6 flex items-center justify-center relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1572726729207-a78d6feb18d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Vela Aromática" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                        <button class="absolute bottom-0 left-0 w-full bg-genesis-dark text-white py-4 text-[10px] uppercase tracking-widest transform translate-y-full group-hover:translate-y-0 transition-transform duration-500">Añadir al Carrito</button>
+                    </div>
+                    <div class="text-center">
+                        <h4 class="font-serif text-lg mb-1">Aura Aura</h4>
+                        <p class="text-[10px] text-gray-400 uppercase tracking-widest mb-2">Vela Energética</p>
+                        <span class="text-sm text-genesis-accent">$35.00</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER: Claro, Armonioso y Sin Colores Oscuros -->
+    <footer class="bg-genesis-clay py-24 px-6 border-t border-genesis-accent/20">
+        <div class="container mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-16 mb-20">
+                
+                <div class="md:col-span-1">
+                    <span class="font-serif text-2xl tracking-superwide uppercase block mb-8 text-genesis-dark">Genesis</span>
+                    <p class="text-sm text-genesis-dark/70 font-light leading-relaxed mb-8">
+                        Un espacio curado para la sanación profunda. Nuestra misión es guiarte hacia un estado de equilibrio natural y paz interior.
+                    </p>
+                    <div class="flex gap-6">
+                        <a href="#" class="text-genesis-accent hover:text-genesis-dark transition-colors flex items-center gap-2">
+                            <span class="text-[10px] font-bold tracking-widest uppercase italic">Instagram</span>
+                        </a>
+                        <a href="#" class="text-genesis-accent hover:text-genesis-dark transition-colors flex items-center gap-2">
+                            <span class="text-[10px] font-bold tracking-widest uppercase italic">Pinterest</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div>
+                    <h5 class="text-[10px] font-bold tracking-[0.3em] uppercase mb-8 text-genesis-dark/50">Santuario</h5>
+                    <ul class="space-y-4 text-[11px] tracking-widest text-genesis-dark/70 font-light uppercase">
+                        <li><a href="#" class="hover:text-genesis-accent transition-colors">Tratamientos</a></li>
+                        <li><a href="#" class="hover:text-genesis-accent transition-colors">Instalaciones</a></li>
+                        <li><a href="#" class="hover:text-genesis-accent transition-colors">Membresías</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h5 class="text-[10px] font-bold tracking-[0.3em] uppercase mb-8 text-genesis-dark/50">Atención</h5>
+                    <ul class="space-y-4 text-[11px] tracking-widest text-genesis-dark/70 font-light uppercase">
+                        <li><a href="#" class="hover:text-genesis-accent transition-colors">Reservas</a></li>
+                        <li><a href="#" class="hover:text-genesis-accent transition-colors">Gift Cards</a></li>
+                        <li><a href="#" class="hover:text-genesis-accent transition-colors">Journal</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h5 class="text-[10px] font-bold tracking-[0.3em] uppercase mb-8 text-genesis-dark/50">Ubicación</h5>
+                    <address class="not-italic text-[11px] tracking-widest text-genesis-dark/70 font-light leading-7 uppercase">
+                        Av. Presidente Masaryk 450<br>
+                        Polanco, Ciudad de México<br>
+                        <span class="text-genesis-accent">10:00 — 20:00</span>
+                    </address>
+                </div>
+            </div>
+
+            <div class="flex flex-col md:flex-row justify-between items-center text-[9px] tracking-[0.4em] uppercase text-genesis-dark/40 border-t border-genesis-accent/10 pt-12">
+                <p>&copy; 2024 Genesis Spa. Todos los derechos reservados.</p>
+                <div class="flex gap-8 mt-4 md:mt-0">
+                    <a href="#" class="hover:text-genesis-dark">Privacidad</a>
+                    <a href="#" class="hover:text-genesis-dark">Términos</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Animación Reveal al hacer Scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal-up').forEach(el => observer.observe(el));
+
+        // Cambio de estilo del Navbar
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 80) {
+                navbar.classList.add('bg-white/90', 'backdrop-blur-lg', 'py-5', 'shadow-sm', 'border-genesis-accent/10');
+                navbar.classList.remove('py-8', 'border-transparent');
+            } else {
+                navbar.classList.remove('bg-white/90', 'backdrop-blur-lg', 'py-5', 'shadow-sm', 'border-genesis-accent/10');
+                navbar.classList.add('py-8', 'border-transparent');
+            }
+        });
+    </script>
+</body>
+</html>
