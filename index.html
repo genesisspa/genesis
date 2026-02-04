@@ -73,13 +73,45 @@
             from { transform: scale(1.1); }
             to { transform: scale(1); }
         }
+
+        /* Flip Card Logic */
+        .flip-card {
+            perspective: 1000px;
+        }
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-style: preserve-3d;
+        }
+        .flip-card.flipped .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+            border-radius: 2px;
+            overflow: hidden;
+        }
+        .flip-card-back {
+            transform: rotateY(180deg);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 1.5rem;
+            text-align: center;
+        }
     </style>
 </head>
 <body class="bg-genesis-base text-genesis-dark font-sans antialiased selection:bg-genesis-accent selection:text-white">
 
     <!-- NAVEGACIÓN -->
     <nav id="navbar" class="fixed w-full z-50 transition-all duration-700 py-8 px-10 flex justify-between items-center border-b border-transparent">
-        <!-- Logo con Mandala -->
         <a href="#" class="flex items-center gap-4 group">
             <div class="w-10 h-10 text-genesis-accent mandala-logo">
                 <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.2">
@@ -94,14 +126,13 @@
             <span class="font-serif text-xl tracking-superwide uppercase group-hover:text-genesis-accent transition-colors">Genesis</span>
         </a>
 
-        <!-- Enlaces -->
         <div class="hidden md:flex items-center gap-12 text-[10px] font-bold tracking-[0.3em] uppercase">
             <a href="#experiencias" class="hover:text-genesis-accent transition-colors">Experiencias</a>
             <a href="#boutique" class="hover:text-genesis-accent transition-colors">Boutique</a>
             <a href="#filosofia" class="hover:text-genesis-accent transition-colors">Filosofía</a>
-            <button class="bg-genesis-dark text-white px-8 py-3 hover:bg-genesis-accent transition-all duration-500">
+            <a href="https://wa.me/5519395684?text=Hola,%20me%20gustaría%20consultar%20disponibilidad%20en%20Genesis" target="_blank" class="bg-genesis-dark text-white px-8 py-3 hover:bg-genesis-accent transition-all duration-500">
                 Reserva
-            </button>
+            </a>
         </div>
     </nav>
 
@@ -125,7 +156,7 @@
         </div>
     </header>
 
-    <!-- FILOSOFÍA: Diseño de Alta Gama -->
+    <!-- FILOSOFÍA -->
     <section id="filosofia" class="py-32 px-6">
         <div class="max-w-6xl mx-auto">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
@@ -134,9 +165,6 @@
                     <h2 class="font-serif text-4xl md:text-5xl text-genesis-dark mb-8 leading-[1.2]">
                         Un refugio <br><span class="italic font-light">para los sentidos.</span>
                     </h2>
-                    <p class="text-gray-500 font-light leading-relaxed text-lg mb-8 italic">
-                        "En el silencio encontramos la respuesta a lo que el cuerpo grita."
-                    </p>
                     <p class="text-gray-600 font-light leading-relaxed text-base mb-10">
                         Genesis nace de la necesidad de reconectar con la naturaleza en su estado más puro. Hemos diseñado un espacio donde la arquitectura minimalista y los elementos botánicos convergen para ofrecer una restauración celular y espiritual completa.
                     </p>
@@ -151,136 +179,213 @@
         </div>
     </section>
 
-    <!-- EXPERIENCIAS: Grid Armónico -->
+    <!-- EXPERIENCIAS -->
     <section id="experiencias" class="py-24 bg-genesis-sage/30">
         <div class="container mx-auto px-6">
             <div class="text-center mb-20 reveal-up">
                 <h2 class="font-serif text-3xl tracking-widest uppercase text-genesis-dark">Rituales de Firma</h2>
                 <div class="h-px w-24 bg-genesis-accent mx-auto mt-4"></div>
+                <p class="text-[10px] uppercase tracking-widest text-genesis-accent mt-4">Haz clic en una imagen para descubrir sus beneficios</p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
                 <!-- Ritual 1 -->
-                <div class="group cursor-pointer reveal-up">
-                    <div class="overflow-hidden mb-6 relative aspect-[3/4]">
-                        <img src="https://images.unsplash.com/photo-1591343395082-e21b17927d22?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110">
-                        <div class="absolute inset-0 bg-genesis-dark/10 group-hover:bg-transparent transition-colors duration-700"></div>
+                <div class="group reveal-up">
+                    <div class="flip-card aspect-[3/4] mb-6 cursor-pointer" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front bg-genesis-clay">
+                                <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" alt="Facial">
+                                <div class="absolute inset-0 bg-genesis-dark/10"></div>
+                            </div>
+                            <div class="flip-card-back bg-white border border-genesis-accent/20">
+                                <div class="w-12 h-[1px] bg-genesis-accent mb-6"></div>
+                                <h4 class="font-serif text-lg text-genesis-dark mb-4 uppercase tracking-widest">Beneficios</h4>
+                                <ul class="text-[11px] tracking-[0.2em] text-gray-500 space-y-4 uppercase leading-relaxed px-4">
+                                    <li>Regeneración celular</li>
+                                    <li>Oxigenación de tejidos</li>
+                                    <li>Hidratación intensa</li>
+                                    <li>Drenaje linfático</li>
+                                    <li>Efecto luminoso</li>
+                                </ul>
+                                <div class="w-12 h-[1px] bg-genesis-accent mt-6"></div>
+                            </div>
+                        </div>
                     </div>
-                    <h3 class="font-serif text-xl text-genesis-dark mb-2 tracking-wide">Renacimiento Botánico</h3>
-                    <p class="text-xs text-gray-400 uppercase tracking-widest mb-4">Facial Terapéutico</p>
-                    <p class="text-sm text-gray-500 font-light line-clamp-2">Inspirado en la botánica regenerativa para devolver la luz natural al rostro.</p>
+                    <h3 class="font-serif text-xl text-genesis-dark mb-2 tracking-wide text-center">Renacimiento Botánico</h3>
+                    <p class="text-xs text-gray-400 uppercase tracking-widest mb-4 text-center">Facial Terapéutico</p>
                 </div>
 
                 <!-- Ritual 2 -->
-                <div class="group cursor-pointer reveal-up" style="transition-delay: 200ms;">
-                    <div class="overflow-hidden mb-6 relative aspect-[3/4]">
-                        <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110">
-                        <div class="absolute inset-0 bg-genesis-dark/10 group-hover:bg-transparent transition-colors duration-700"></div>
+                <div class="group reveal-up" style="transition-delay: 200ms;">
+                    <div class="flip-card aspect-[3/4] mb-6 cursor-pointer" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front bg-genesis-clay">
+                                <img src="https://ixuspa.com/wp-content/uploads/2016/08/relax-hot-stone-woman-getting-massage-spa-healing-health-wellness-self-care-beauty-female-person-getting-natural-body-care-luxury-back-therapy-treatment-salon-1536x810.jpg" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" alt="Masaje">
+                                <div class="absolute inset-0 bg-genesis-dark/10"></div>
+                            </div>
+                            <div class="flip-card-back bg-white border border-genesis-accent/20">
+                                <div class="w-12 h-[1px] bg-genesis-accent mb-6"></div>
+                                <h4 class="font-serif text-lg text-genesis-dark mb-4 uppercase tracking-widest">Beneficios</h4>
+                                <ul class="text-[11px] tracking-[0.2em] text-gray-500 space-y-4 uppercase leading-relaxed px-4">
+                                    <li>Relajación muscular</li>
+                                    <li>Mejora de circulación</li>
+                                    <li>Eliminación de toxinas</li>
+                                    <li>Reducción del estrés</li>
+                                    <li>Alivio de tensiones</li>
+                                </ul>
+                                <div class="w-12 h-[1px] bg-genesis-accent mt-6"></div>
+                            </div>
+                        </div>
                     </div>
-                    <h3 class="font-serif text-xl text-genesis-dark mb-2 tracking-wide">Inmersión Sensorial</h3>
-                    <p class="text-xs text-gray-400 uppercase tracking-widest mb-4">Terapia Corporal</p>
-                    <p class="text-sm text-gray-500 font-light line-clamp-2">Masaje de tejido profundo con aceites esenciales de grado terapéutico.</p>
+                    <h3 class="font-serif text-xl text-genesis-dark mb-2 tracking-wide text-center">Inmersión Sensorial</h3>
+                    <p class="text-xs text-gray-400 uppercase tracking-widest mb-4 text-center">Terapia Corporal</p>
                 </div>
 
                 <!-- Ritual 3 -->
-                <div class="group cursor-pointer reveal-up" style="transition-delay: 400ms;">
-                    <div class="overflow-hidden mb-6 relative aspect-[3/4]">
-                        <img src="https://images.unsplash.com/photo-1603569283847-aa295f0d016a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110">
-                        <div class="absolute inset-0 bg-genesis-dark/10 group-hover:bg-transparent transition-colors duration-700"></div>
+                <div class="group reveal-up" style="transition-delay: 400ms;">
+                    <div class="flip-card aspect-[3/4] mb-6 cursor-pointer" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front bg-genesis-clay">
+                                <img src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" alt="Acupuntura">
+                                <div class="absolute inset-0 bg-genesis-dark/10"></div>
+                            </div>
+                            <div class="flip-card-back bg-white border border-genesis-accent/20">
+                                <div class="w-12 h-[1px] bg-genesis-accent mb-6"></div>
+                                <h4 class="font-serif text-lg text-genesis-dark mb-4 uppercase tracking-widest">Beneficios</h4>
+                                <ul class="text-[11px] tracking-[0.2em] text-gray-500 space-y-4 uppercase leading-relaxed px-4">
+                                    <li>Equilibrio energético</li>
+                                    <li>Sistema inmune fuerte</li>
+                                    <li>Regulación del sueño</li>
+                                    <li>Alivio de migrañas</li>
+                                    <li>Armonía mental</li>
+                                </ul>
+                                <div class="w-12 h-[1px] bg-genesis-accent mt-6"></div>
+                            </div>
+                        </div>
                     </div>
-                    <h3 class="font-serif text-xl text-genesis-dark mb-2 tracking-wide">Paz Interior</h3>
-                    <p class="text-xs text-gray-400 uppercase tracking-widest mb-4">Meditación Asistida</p>
-                    <p class="text-sm text-gray-500 font-light line-clamp-2">Un viaje de cuencos de cuarzo y respiración consciente.</p>
+                    <h3 class="font-serif text-xl text-genesis-dark mb-2 tracking-wide text-center">Paz Interior</h3>
+                    <p class="text-xs text-gray-400 uppercase tracking-widest mb-4 text-center">Acupuntura Curativa</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- BOUTIQUE: Minimalista y Atractiva con Imágenes Restauradas -->
+    <!-- BOUTIQUE: Actualizado con Flip Cards -->
     <section id="boutique" class="py-32 bg-white">
         <div class="container mx-auto px-6">
             <div class="flex flex-col md:flex-row justify-between items-center mb-20 reveal-up">
                 <div class="text-center md:text-left mb-8 md:mb-0">
                     <h2 class="font-serif text-4xl text-genesis-dark mb-2 tracking-wide">Genesis <span class="italic font-light">Boutique</span></h2>
-                    <p class="text-xs tracking-widest uppercase text-genesis-accent">El spa en tu hogar</p>
+                    <p class="text-xs tracking-widest uppercase text-genesis-accent">Haz clic para descubrir los beneficios</p>
                 </div>
-                <a href="#" class="text-[10px] font-bold tracking-widest uppercase border-b border-genesis-dark pb-2 hover:text-genesis-accent hover:border-genesis-accent transition-all">Ver Colección Completa</a>
+                <a href="#" class="text-[10px] font-bold tracking-widest uppercase border-b border-genesis-dark pb-2 hover:text-genesis-accent hover:border-genesis-accent transition-all">Ver Colección</a>
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
-                <!-- Producto 1: Restaurado -->
+                <!-- Producto 1 -->
                 <div class="group reveal-up">
-                    <div class="bg-genesis-clay aspect-[4/5] p-10 mb-6 flex items-center justify-center relative overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1611080626919-7cf5a9dbab5b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Aceite Terapéutico" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
-                        <button class="absolute bottom-0 left-0 w-full bg-genesis-dark text-white py-4 text-[10px] uppercase tracking-widest transform translate-y-full group-hover:translate-y-0 transition-transform duration-500">Añadir al Carrito</button>
+                    <div class="flip-card aspect-[4/5] mb-6 cursor-pointer" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front bg-genesis-clay">
+                                <img src="https://images.unsplash.com/photo-1611080626919-7cf5a9dbab5b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Suero" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110">
+                            </div>
+                            <div class="flip-card-back bg-genesis-clay border border-genesis-accent/20">
+                                <h4 class="font-serif text-sm text-genesis-dark mb-4 uppercase tracking-[0.2em]">Propiedades</h4>
+                                <ul class="text-[10px] tracking-widest text-gray-500 space-y-3 uppercase leading-relaxed">
+                                    <li>Antioxidante Natural</li>
+                                    <li>Reparación Nocturna</li>
+                                    <li>Luminosidad</li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                     <div class="text-center">
                         <h4 class="font-serif text-lg mb-1">Elixir Luna</h4>
-                        <p class="text-[10px] text-gray-400 uppercase tracking-widest mb-2">Suero Nocturno</p>
-                        <span class="text-sm text-genesis-accent">$75.00</span>
+                        <p class="text-[10px] text-gray-400 uppercase tracking-widest">$75.00</p>
                     </div>
                 </div>
 
-                <!-- Producto 2: Restaurado -->
+                <!-- Producto 2 -->
                 <div class="group reveal-up" style="transition-delay: 150ms;">
-                    <div class="bg-genesis-clay aspect-[4/5] p-10 mb-6 flex items-center justify-center relative overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1556227702-d1e4e7b5c232?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Crema Hidratante" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
-                        <button class="absolute bottom-0 left-0 w-full bg-genesis-dark text-white py-4 text-[10px] uppercase tracking-widest transform translate-y-full group-hover:translate-y-0 transition-transform duration-500">Añadir al Carrito</button>
+                    <div class="flip-card aspect-[4/5] mb-6 cursor-pointer" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front bg-genesis-clay">
+                                <img src="https://images.unsplash.com/photo-1556227702-d1e4e7b5c232?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Crema" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110">
+                            </div>
+                            <div class="flip-card-back bg-genesis-clay border border-genesis-accent/20">
+                                <h4 class="font-serif text-sm text-genesis-dark mb-4 uppercase tracking-[0.2em]">Propiedades</h4>
+                                <ul class="text-[10px] tracking-widest text-gray-500 space-y-3 uppercase leading-relaxed">
+                                    <li>Hidratación 24h</li>
+                                    <li>Barrera Mineral</li>
+                                    <li>Efecto Calma</li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                     <div class="text-center">
                         <h4 class="font-serif text-lg mb-1">Seda Mineral</h4>
-                        <p class="text-[10px] text-gray-400 uppercase tracking-widest mb-2">Crema Hidratante</p>
-                        <span class="text-sm text-genesis-accent">$92.00</span>
+                        <p class="text-[10px] text-gray-400 uppercase tracking-widest">$92.00</p>
                     </div>
                 </div>
 
-                <!-- Producto 3: Restaurado -->
+                <!-- Producto 3 -->
                 <div class="group reveal-up" style="transition-delay: 300ms;">
-                    <div class="bg-genesis-clay aspect-[4/5] p-10 mb-6 flex items-center justify-center relative overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1590439471364-192aa70c0b53?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Sales de Baño" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
-                        <button class="absolute bottom-0 left-0 w-full bg-genesis-dark text-white py-4 text-[10px] uppercase tracking-widest transform translate-y-full group-hover:translate-y-0 transition-transform duration-500">Añadir al Carrito</button>
+                    <div class="flip-card aspect-[4/5] mb-6 cursor-pointer" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front bg-genesis-clay">
+                                <img src="https://images.unsplash.com/photo-1590439471364-192aa70c0b53?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Sales" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110">
+                            </div>
+                            <div class="flip-card-back bg-genesis-clay border border-genesis-accent/20">
+                                <h4 class="font-serif text-sm text-genesis-dark mb-4 uppercase tracking-[0.2em]">Propiedades</h4>
+                                <ul class="text-[10px] tracking-widest text-gray-500 space-y-3 uppercase leading-relaxed">
+                                    <li>Desintoxicante</li>
+                                    <li>Alivio Muscular</li>
+                                    <li>Remineralizante</li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                     <div class="text-center">
                         <h4 class="font-serif text-lg mb-1">Cristal Marino</h4>
-                        <p class="text-[10px] text-gray-400 uppercase tracking-widest mb-2">Exfoliante de Sales</p>
-                        <span class="text-sm text-genesis-accent">$48.00</span>
+                        <p class="text-[10px] text-gray-400 uppercase tracking-widest">$48.00</p>
                     </div>
                 </div>
 
-                <!-- Producto 4: Restaurado -->
+                <!-- Producto 4 -->
                 <div class="group reveal-up" style="transition-delay: 450ms;">
-                    <div class="bg-genesis-clay aspect-[4/5] p-10 mb-6 flex items-center justify-center relative overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1572726729207-a78d6feb18d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Vela Aromática" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
-                        <button class="absolute bottom-0 left-0 w-full bg-genesis-dark text-white py-4 text-[10px] uppercase tracking-widest transform translate-y-full group-hover:translate-y-0 transition-transform duration-500">Añadir al Carrito</button>
+                    <div class="flip-card aspect-[4/5] mb-6 cursor-pointer" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front bg-genesis-clay">
+                                <img src="https://images.unsplash.com/photo-1572726729207-a78d6feb18d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Vela" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110">
+                            </div>
+                            <div class="flip-card-back bg-genesis-clay border border-genesis-accent/20">
+                                <h4 class="font-serif text-sm text-genesis-dark mb-4 uppercase tracking-[0.2em]">Propiedades</h4>
+                                <ul class="text-[10px] tracking-widest text-gray-500 space-y-3 uppercase leading-relaxed">
+                                    <li>Aromaterapia</li>
+                                    <li>Ambiente Zen</li>
+                                    <li>Cera de Soja</li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                     <div class="text-center">
                         <h4 class="font-serif text-lg mb-1">Aura Aura</h4>
-                        <p class="text-[10px] text-gray-400 uppercase tracking-widest mb-2">Vela Energética</p>
-                        <span class="text-sm text-genesis-accent">$35.00</span>
+                        <p class="text-[10px] text-gray-400 uppercase tracking-widest">$35.00</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- FOOTER: Claro, Armonioso y Sin Colores Oscuros -->
+    <!-- FOOTER -->
     <footer class="bg-genesis-clay py-24 px-6 border-t border-genesis-accent/20">
         <div class="container mx-auto">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-16 mb-20">
-                
                 <div class="md:col-span-1">
                     <span class="font-serif text-2xl tracking-superwide uppercase block mb-8 text-genesis-dark">Genesis</span>
                     <p class="text-sm text-genesis-dark/70 font-light leading-relaxed mb-8">
-                        Un espacio curado para la sanación profunda. Nuestra misión es guiarte hacia un estado de equilibrio natural y paz interior.
+                        Un espacio curado para la sanación profunda. Nuestra misión es guiarte hacia un estado de equilibrio natural.
                     </p>
-                    <div class="flex gap-6">
-                        <a href="#" class="text-genesis-accent hover:text-genesis-dark transition-colors flex items-center gap-2">
-                            <span class="text-[10px] font-bold tracking-widest uppercase italic">Instagram</span>
-                        </a>
-                        <a href="#" class="text-genesis-accent hover:text-genesis-dark transition-colors flex items-center gap-2">
-                            <span class="text-[10px] font-bold tracking-widest uppercase italic">Pinterest</span>
-                        </a>
-                    </div>
                 </div>
 
                 <div>
@@ -288,7 +393,6 @@
                     <ul class="space-y-4 text-[11px] tracking-widest text-genesis-dark/70 font-light uppercase">
                         <li><a href="#" class="hover:text-genesis-accent transition-colors">Tratamientos</a></li>
                         <li><a href="#" class="hover:text-genesis-accent transition-colors">Instalaciones</a></li>
-                        <li><a href="#" class="hover:text-genesis-accent transition-colors">Membresías</a></li>
                     </ul>
                 </div>
 
@@ -297,32 +401,30 @@
                     <ul class="space-y-4 text-[11px] tracking-widest text-genesis-dark/70 font-light uppercase">
                         <li><a href="#" class="hover:text-genesis-accent transition-colors">Reservas</a></li>
                         <li><a href="#" class="hover:text-genesis-accent transition-colors">Gift Cards</a></li>
-                        <li><a href="#" class="hover:text-genesis-accent transition-colors">Journal</a></li>
                     </ul>
                 </div>
 
                 <div>
-                    <h5 class="text-[10px] font-bold tracking-[0.3em] uppercase mb-8 text-genesis-dark/50">Ubicación</h5>
-                    <address class="not-italic text-[11px] tracking-widest text-genesis-dark/70 font-light leading-7 uppercase">
-                        Av. Presidente Masaryk 450<br>
-                        Polanco, Ciudad de México<br>
-                        <span class="text-genesis-accent">10:00 — 20:00</span>
-                    </address>
+                    <h5 class="text-[10px] font-bold tracking-[0.3em] uppercase mb-8 text-genesis-dark/50">Contacto</h5>
+                    <div class="space-y-4">
+                        <p class="text-[11px] tracking-widest text-genesis-dark/70 font-light uppercase leading-7">
+                            Para agendar tu ritual, consulta nuestra disponibilidad:
+                        </p>
+                        <a href="https://wa.me/5519395684?text=Hola,%20me%20gustaría%20consultar%20disponibilidad%20en%20Genesis" target="_blank" class="inline-flex items-center gap-2 text-[11px] tracking-widest text-genesis-dark font-bold hover:text-genesis-accent transition-all uppercase">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+                            WhatsApp: 5519395684
+                        </a>
+                    </div>
                 </div>
             </div>
 
             <div class="flex flex-col md:flex-row justify-between items-center text-[9px] tracking-[0.4em] uppercase text-genesis-dark/40 border-t border-genesis-accent/10 pt-12">
                 <p>&copy; 2024 Genesis Spa. Todos los derechos reservados.</p>
-                <div class="flex gap-8 mt-4 md:mt-0">
-                    <a href="#" class="hover:text-genesis-dark">Privacidad</a>
-                    <a href="#" class="hover:text-genesis-dark">Términos</a>
-                </div>
             </div>
         </div>
     </footer>
 
     <script>
-        // Animación Reveal al hacer Scroll
         const observerOptions = {
             threshold: 0.1,
             rootMargin: "0px 0px -50px 0px"
@@ -338,15 +440,12 @@
 
         document.querySelectorAll('.reveal-up').forEach(el => observer.observe(el));
 
-        // Cambio de estilo del Navbar
         window.addEventListener('scroll', () => {
             const navbar = document.getElementById('navbar');
             if (window.scrollY > 80) {
                 navbar.classList.add('bg-white/90', 'backdrop-blur-lg', 'py-5', 'shadow-sm', 'border-genesis-accent/10');
-                navbar.classList.remove('py-8', 'border-transparent');
             } else {
                 navbar.classList.remove('bg-white/90', 'backdrop-blur-lg', 'py-5', 'shadow-sm', 'border-genesis-accent/10');
-                navbar.classList.add('py-8', 'border-transparent');
             }
         });
     </script>
